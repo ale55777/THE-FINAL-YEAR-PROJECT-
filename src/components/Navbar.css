@@ -1,0 +1,425 @@
+/* =============================================
+   NAVBAR SIDEBAR — Premium Dark Glassmorphism
+   ============================================= */
+
+.navbar-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 260px;
+  background: rgba(15, 15, 30, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(167, 139, 250, 0.15);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.navbar-sidebar.collapsed {
+  width: 72px;
+}
+
+/* ---- Brand ---- */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 18px 16px;
+  position: relative;
+  min-height: 72px;
+}
+
+.navbar-logo {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(167, 139, 250, 0.5));
+  transition: filter 0.3s;
+}
+
+.navbar-logo:hover {
+  filter: drop-shadow(0 0 14px rgba(167, 139, 250, 0.9));
+}
+
+.navbar-logo svg {
+  width: 100%;
+  height: 100%;
+}
+
+.navbar-brand-name {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #a78bfa, #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  flex: 1;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.navbar-collapse-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  margin-left: auto;
+}
+
+.navbar-collapse-btn svg {
+  width: 14px;
+  height: 14px;
+  stroke: rgba(255, 255, 255, 0.5);
+  transition: stroke 0.2s;
+}
+
+.navbar-collapse-btn:hover {
+  background: rgba(167, 139, 250, 0.15);
+  border-color: rgba(167, 139, 250, 0.3);
+  transform: scale(1.05);
+}
+
+.navbar-collapse-btn:hover svg {
+  stroke: #a78bfa;
+}
+
+.navbar-sidebar.collapsed .navbar-brand {
+  justify-content: center;
+  padding: 20px 0 16px;
+}
+
+.navbar-sidebar.collapsed .navbar-collapse-btn {
+  position: absolute;
+  right: 10px;
+  top: 22px;
+}
+
+/* ---- Divider ---- */
+.navbar-divider {
+  height: 1px;
+  margin: 0 14px;
+  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.2), transparent);
+}
+
+/* ---- Nav List ---- */
+.navbar-nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 10px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(167, 139, 250, 0.2) transparent;
+}
+
+.navbar-nav::-webkit-scrollbar {
+  width: 4px;
+}
+.navbar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+.navbar-nav::-webkit-scrollbar-thumb {
+  background: rgba(167, 139, 250, 0.2);
+  border-radius: 2px;
+}
+
+.navbar-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.navbar-list-item {
+  position: relative;
+}
+
+/* ---- Nav Item Button ---- */
+.navbar-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  padding: 11px 14px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.25s ease, transform 0.15s ease;
+  outline: none;
+  overflow: hidden;
+}
+
+.navbar-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.08), rgba(96, 165, 250, 0.08));
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.navbar-item:hover::before {
+  opacity: 1;
+}
+
+.navbar-item:hover {
+  transform: translateX(2px);
+}
+
+.navbar-item:active {
+  transform: translateX(1px) scale(0.99);
+}
+
+/* Active state */
+.navbar-item.active {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(96, 165, 250, 0.15));
+  box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.25) inset, 0 4px 16px rgba(167, 139, 250, 0.1);
+}
+
+.navbar-item.active::before {
+  opacity: 0;
+}
+
+/* Active left indicator bar */
+.active-indicator {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: linear-gradient(180deg, #a78bfa, #60a5fa);
+  border-radius: 0 3px 3px 0;
+  box-shadow: 0 0 10px rgba(167, 139, 250, 0.7);
+}
+
+/* Icon */
+.navbar-item-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.25s;
+}
+
+.navbar-item-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: rgba(255, 255, 255, 0.45);
+  transition: stroke 0.25s ease;
+}
+
+.navbar-item:hover .navbar-item-icon svg,
+.navbar-item.active .navbar-item-icon svg {
+  stroke: #a78bfa;
+  filter: drop-shadow(0 0 6px rgba(167, 139, 250, 0.6));
+}
+
+/* Label */
+.navbar-item-label {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  flex: 1;
+  transition: color 0.25s ease;
+  letter-spacing: 0.01em;
+}
+
+.navbar-item:hover .navbar-item-label,
+.navbar-item.active .navbar-item-label {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.navbar-item.active .navbar-item-label {
+  font-weight: 600;
+  background: linear-gradient(135deg, #c4b5fd, #93c5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Badge */
+.navbar-item-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7c3aed, #3b82f6);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
+  animation: badgePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4); }
+  50%       { box-shadow: 0 2px 14px rgba(124, 58, 237, 0.7); }
+}
+
+/* Badge dot (collapsed) */
+.navbar-item-badge-dot {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #a78bfa, #60a5fa);
+  border-radius: 50%;
+  border: 1.5px solid #0f0f1a;
+  animation: badgePulse 2.5s ease-in-out infinite;
+}
+
+/* Tooltip on collapsed */
+.navbar-tooltip {
+  position: absolute;
+  left: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(20, 20, 40, 0.98);
+  border: 1px solid rgba(167, 139, 250, 0.25);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateY(-50%) translateX(-6px);
+  z-index: 2000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.navbar-tooltip::before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-right-color: rgba(167, 139, 250, 0.25);
+}
+
+.navbar-sidebar.collapsed .navbar-item:hover .navbar-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ---- Footer / User ---- */
+.navbar-footer {
+  padding: 12px 10px 20px;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.25s;
+  margin-top: 10px;
+}
+
+.navbar-user:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.navbar-avatar {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #3b82f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.35);
+}
+
+.avatar-status {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 9px;
+  height: 9px;
+  background: #22c55e;
+  border-radius: 50%;
+  border: 2px solid #0f0f1a;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
+}
+
+.navbar-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.navbar-user-name {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navbar-user-role {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: rgba(167, 139, 250, 0.7);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* ---- Collapsed overrides ---- */
+.navbar-sidebar.collapsed .navbar-user {
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.navbar-sidebar.collapsed .navbar-item {
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.navbar-sidebar.collapsed .navbar-nav {
+  padding: 12px 8px;
+}

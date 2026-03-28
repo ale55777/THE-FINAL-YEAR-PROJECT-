@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./AuthPage.css";
 
-export default function AuthPage() {
+export default function AuthPage({ onLogin }) {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
@@ -51,7 +51,10 @@ export default function AuthPage() {
     setTimeout(() => {
       setLoading(false);
       setSuccess(true);
-      setTimeout(() => setSuccess(false), 3000);
+      setTimeout(() => {
+        setSuccess(false);
+        if (onLogin) onLogin();
+      }, 1500);
     }, 1500);
   };
 
